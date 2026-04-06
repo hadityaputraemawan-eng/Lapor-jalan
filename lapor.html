@@ -1,379 +1,424 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kirim Laporan</title>
-<link rel="icon" href="asset/logo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaporJalan - Kirim Laporan</title>
+    <link rel="icon" href="asset/logo.png" type="image/png">
 
-<style>
-  /* Reset dasar agar tidak ada margin bawaan browser */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f7f7;
-    padding-top: 80px; /* Memberi ruang agar konten tidak tertutup navbar fixed */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* --- NAVBAR (DIPERBAIKI) --- */
-  nav {
-    background: #ffffff;
-    width: 100%;
-    height: 70px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed; /* Membuat navbar tetap di atas saat scroll */
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .nav-wrapper {
-    width: 90%;
-    max-width: 1100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .logo-section img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-  }
-
-  .logo {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #000;
-    text-decoration: none;
-  }
-
-  .logo span {
-    color: #1abc9c;
-  }
-
-  .menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-
-  .menu a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-  }
-
-  .menu a:hover {
-    color: #1abc9c;
-  }
-
-  /* --- KONTEN UTAMA --- */
-  .main-content {
-    width: 400px; /* Sesuai keinginan awal Anda */
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 50px;
-  }
-
-  /* UPLOAD */
-  .upload-box {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-
-  .preview-container {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-
-  .preview-container img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-
-  /* RADIO MODERN */
-  .kategori {
-    display: flex;
-    gap: 10px;
-    margin: 15px 0;
-  }
-
-  .kategori input {
-    display: none;
-  }
-
-  .kategori label {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    background: #eee;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .kategori input:checked + label {
-    background: teal;
-    color: white;
-  }
-
-  /* INPUT */
-  .row {
-    display: flex;
-    gap: 10px;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-
-  /* BUTTON */
-  button {
-    width: 100%;
-    padding: 10px;
-    background: teal;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  /* CARD HISTORY */
-  .card {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 6px;
-    border-left: 5px solid teal;
-  }
-
-  .history-img {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-
-  .history-img img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  .hapus-btn {
-    background: #e74c3c;
-    margin-top: 10px;
-  }
-  footer {
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  width: 100%;
-  }
-</style>
-</head>
-
-<body>
-
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="logo-section">
-        <img src="asset/logo.png" alt="Logo">
-        <div class="logo">Lapor<span>Jalan</span>.</div>
-      </a>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="lapor.html">Lapor</a></li>
-        
-      </ul>
-    </div>
-  </nav>
-
-  <div class="main-content">
-    <h2>Kirim Laporan</h2>
-
-    <div class="upload-box" id="uploadBox">
-      <input type="file" id="fileInput" multiple hidden>
-      <p>Klik upload gambar</p>
-      <div class="preview-container" id="preview"></div>
-    </div>
-
-    <div class="kategori">
-      <input type="radio" id="jalan" name="kategori" value="Jalan" checked>
-      <label for="jalan">Jalan</label>
-
-      <input type="radio" id="trotoar" name="kategori" value="Trotoar">
-      <label for="trotoar">Trotoar</label>
-
-      <input type="radio" id="jembatan" name="kategori" value="Jembatan">
-      <label for="jembatan">Jembatan</label>
-    </div>
-
-    <div class="row">
-      <input type="text" id="nama" placeholder="Nama">
-      <input type="date" id="tanggal">
-    </div>
-
-    <textarea id="deskripsi" placeholder="Deskripsi" rows="3"></textarea>
-
-    <button id="submitBtn">Kirim</button>
-    <p id="msg" style="text-align:center; margin-top:5px;"></p>
-
-    <button onclick="hapusSemua()" style="background:#333; margin-top:10px;">
-      Hapus Semua Histori
-    </button>
-
-    <h3 style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px;">Histori</h3>
-    <div id="historyList"></div>
-  </div>
-
-  <script>
-    // Script tetap sama seperti logika asli Anda
-    const fileInput = document.getElementById("fileInput");
-    const preview = document.getElementById("preview");
-    const uploadBox = document.getElementById("uploadBox");
-    let imagesBase64 = [];
-
-    uploadBox.onclick = () => fileInput.click();
-
-    fileInput.onchange = () => {
-      preview.innerHTML = "";
-      imagesBase64 = [];
-      Array.from(fileInput.files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = e => {
-          imagesBase64.push(e.target.result);
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          preview.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
-    };
-
-    function getKategori() {
-      return document.querySelector('input[name="kategori"]:checked').value;
-    }
-
-    function loadHistory() {
-      const data = JSON.parse(localStorage.getItem("laporan")) || [];
-      const historyList = document.getElementById("historyList");
-      historyList.innerHTML = "";
-
-      data.forEach((item, index) => {
-        let imagesHTML = "";
-        if (item.images) {
-          item.images.forEach(img => {
-            imagesHTML += `<img src="${img}">`;
-          });
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `
-          <b>${item.nama}</b> <small>(${item.tanggal})</small><br>
-          <span style="color:teal; font-weight:bold">${item.kategori}</span><br>
-          <p style="font-size:0.9rem; margin:5px 0;">${item.deskripsi}</p>
-          <small style="color:orange">Status: ${item.status}</small>
-          <div class="history-img">${imagesHTML}</div>
-          <button class="hapus-btn" onclick="hapusData(${index})">Hapus</button>
-        `;
-        historyList.appendChild(div);
-      });
-    }
+        body {
+            background: #f0f2f5;
+            padding-top: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    document.getElementById("submitBtn").onclick = () => {
-      const nama = document.getElementById("nama").value;
-      const tanggal = document.getElementById("tanggal").value;
-      const deskripsi = document.getElementById("deskripsi").value;
-      const msg = document.getElementById("msg");
+        /* --- NAVBAR --- */
+        nav {
+            background: #ffffff;
+            width: 100%;
+            height: 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
 
-      if (!nama || !tanggal || !deskripsi) {
-        msg.innerText = "Isi semua!";
-        msg.style.color = "red";
-        return;
-      }
+        .nav-wrapper {
+            width: 90%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-      const laporan = {
-        nama,
-        tanggal,
-        kategori: getKategori(),
-        deskripsi,
-        status: "Masih dalam antrian",
-        images: imagesBase64
-      };
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-      let data = JSON.parse(localStorage.getItem("laporan")) || [];
-      data.push(laporan);
-      localStorage.setItem("laporan", JSON.stringify(data));
+        .logo-section img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #1abc9c;
+        }
 
-      msg.innerText = "Berhasil!";
-      msg.style.color = "green";
-      
-      // Reset form
-      document.getElementById("nama").value = "";
-      document.getElementById("tanggal").value = "";
-      document.getElementById("deskripsi").value = "";
-      preview.innerHTML = "";
-      fileInput.value = "";
-      imagesBase64 = [];
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
 
-      loadHistory();
-    };
+        .logo span { color: #1abc9c; }
 
-    function hapusData(index) {
-      let data = JSON.parse(localStorage.getItem("laporan")) || [];
-      data.splice(index, 1);
-      localStorage.setItem("laporan", JSON.stringify(data));
-      loadHistory();
-    }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
 
-    function hapusSemua() {
-      if(confirm("Hapus semua histori?")) {
-        localStorage.removeItem("laporan");
-        loadHistory();
-      }
-    }
+        .menu a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
 
-    loadHistory();
-  </script>
-   
+        .menu a:hover { color: #1abc9c; }
+
+        /* --- KONTEN UTAMA --- */
+        .main-content {
+            width: 95%;
+            max-width: 450px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+
+        h2 { margin-bottom: 20px; color: #333; font-size: 1.4rem; }
+
+        /* UPLOAD BOX */
+        .upload-box {
+            border: 2px dashed #cbd5e0;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: 0.3s;
+            background: #f8fafc;
+        }
+
+        .upload-box:hover { border-color: #1abc9c; background: #f0fff4; }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .preview-container img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* RADIO KATEGORI */
+        .kategori {
+            display: flex;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .kategori input { display: none; }
+
+        .kategori label {
+            flex: 1;
+            text-align: center;
+            padding: 10px 5px;
+            background: #edf2f7;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+            color: #4a5568;
+        }
+
+        .kategori input:checked + label {
+            background: #1abc9c;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* INPUTS */
+        .row { display: flex; gap: 10px; }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus { border-color: #1abc9c; box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1); }
+
+        /* BUTTONS */
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: #1abc9c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover { background: #16a085; }
+
+        /* CARD HISTORY */
+        .history-section { margin-top: 30px; border-top: 2px solid #f0f2f5; padding-top: 20px; }
+
+        .card {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #1abc9c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .card b { color: #2d3748; }
+
+        .history-img { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+        .history-img img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .hapus-btn {
+            background: #feb2b2;
+            color: #c53030;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .hapus-btn:hover { background: #fc8181; }
+
+        footer {
+            background: #2c3e50;
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            width: 100%;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="asset/logo.png" class="logo-section">
+            <a href="" class="logo-section">
+                <img src="asset/logo.png" alt="Logo">
+                <div class="logo">Lapor<span>Jalan</span></div>
+            </a>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h2>Kirim Laporan</h2>
+
+        <div class="upload-box" id="uploadBox">
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            <p style="color: #718096;"> Klik untuk upload gambar</p>
+            <div class="preview-container" id="preview"></div>
+        </div>
+
+        <div class="kategori">
+            <input type="radio" id="jalan" name="kategori" value="Jalan" checked>
+            <label for="jalan">Jalan</label>
+
+            <input type="radio" id="trotoar" name="kategori" value="Trotoar">
+            <label for="trotoar">Trotoar</label>
+
+            <input type="radio" id="jembatan" name="kategori" value="Jembatan">
+            <label for="jembatan">Jembatan</label>
+        </div>
+
+        <div class="row">
+            <input type="text" id="nama" placeholder="Nama Pelapor">
+            <input type="date" id="tanggal">
+        </div>
+
+        <textarea id="deskripsi" placeholder="Ceritakan detail kerusakan..." rows="3"></textarea>
+
+        <button class="btn-primary" id="submitBtn">Kirim Laporan</button>
+        <p id="msg" style="text-align:center; margin-top:10px; font-weight: bold;"></p>
+
+        <div class="history-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3>Histori</h3>
+                <button onclick="hapusSemua()" style="background:none; border:none; color:#e74c3c; cursor:pointer; font-size:0.8rem;">Hapus Semua</button>
+            </div>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 aporJalan. Membantu membangun infrastruktur lebih baik.
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const preview = document.getElementById("preview");
+        const uploadBox = document.getElementById("uploadBox");
+        let imagesBase64 = [];
+
+        // Triger klik pada input file
+        uploadBox.onclick = (e) => {
+            if (e.target !== fileInput) fileInput.click();
+        };
+
+        // Handle Preview Gambar
+        fileInput.onchange = () => {
+            preview.innerHTML = "";
+            imagesBase64 = [];
+            const files = Array.from(fileInput.files);
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    imagesBase64.push(e.target.result);
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        };
+
+        // Ambil Nilai Kategori
+        function getKategori() {
+            return document.querySelector('input[name="kategori"]:checked').value;
+        }
+
+        // Tampilkan Data dari LocalStorage
+        function loadHistory() {
+            const data = JSON.parse(localStorage.getItem("laporan")) || [];
+            const historyList = document.getElementById("historyList");
+            historyList.innerHTML = data.length === 0 ? "<p style='color:#999; text-align:center;'>Belum ada laporan.</p>" : "";
+
+            data.forEach((item, index) => {
+                let imagesHTML = "";
+                if (item.images && item.images.length > 0) {
+                    item.images.forEach(img => {
+                        imagesHTML += `<img src="${img}">`;
+                    });
+                }
+
+                const div = document.createElement("div");
+                div.classList.add("card");
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between;">
+                        <b>${item.nama}</b>
+                        <small style="color:#718096">${item.tanggal}</small>
+                    </div>
+                    <span style="background:#e6fffa; color:#2c7a7b; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:bold">${item.kategori}</span>
+                    <p style="font-size:0.9rem; margin:8px 0; color:#4a5568;">${item.deskripsi}</p>
+                    <div style="color:#d69e2e; font-size:0.8rem; font-weight:bold;">● ${item.status}</div>
+                    <div class="history-img">${imagesHTML}</div>
+                    <button class="hapus-btn" onclick="hapusData(${index})">Hapus Laporan</button>
+                `;
+                historyList.appendChild(div);
+            });
+        }
+
+        // Simpan Laporan
+        document.getElementById("submitBtn").onclick = function() {
+            const nama = document.getElementById("nama").value;
+            const tanggal = document.getElementById("tanggal").value;
+            const deskripsi = document.getElementById("deskripsi").value;
+            const msg = document.getElementById("msg");
+
+            if (!nama || !tanggal || !deskripsi) {
+                msg.innerText = " Mohon lengkapi semua data!";
+                msg.style.color = "#e53e3e";
+                return;
+            }
+
+            const laporanBaru = {
+                nama,
+                tanggal,
+                kategori: getKategori(),
+                deskripsi,
+                status: "Menunggu Verifikasi",
+                images: imagesBase64
+            };
+
+            let data = JSON.parse(localStorage.getItem("laporan")) || [];
+            data.unshift(laporanBaru); // Tambah ke paling atas
+            localStorage.setItem("laporan", JSON.stringify(data));
+
+            // Reset Form
+            msg.innerText = "Laporan berhasil dikirim!";
+            msg.style.color = "#38a169";
+            document.getElementById("nama").value = "";
+            document.getElementById("tanggal").value = "";
+            document.getElementById("deskripsi").value = "";
+            preview.innerHTML = "";
+            fileInput.value = "";
+            imagesBase64 = [];
+
+            loadHistory();
+
+            // Hilangkan pesan sukses setelah 3 detik
+            setTimeout(() => { msg.innerText = ""; }, 3000);
+        };
+
+        // Hapus Satu Data
+        function hapusData(index) {
+            if(confirm("Hapus laporan ini?")) {
+                let data = JSON.parse(localStorage.getItem("laporan")) || [];
+                data.splice(index, 1);
+                localStorage.setItem("laporan", JSON.stringify(data));
+                loadHistory();
+            }
+        }
+
+        // Hapus Semua
+        function hapusSemua() {
+            if(confirm("Anda yakin ingin menghapus seluruh histori laporan?")) {
+                localStorage.removeItem("laporan");
+                loadHistory();
+            }
+        }
+
+        // Jalankan saat halaman dibuka
+        window.onload = loadHistory;
+    </script>
 </body>
 </html>

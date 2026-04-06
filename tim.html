@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tim Pengembang</title>
+        <link rel="icon" type="image/png" href="asset\logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
+
+        /* Utility class untuk pattern titik-titik samar */
+        .bg-dot-pattern {
+            background-image: radial-gradient(#ffffff20 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+
+        /* Animasi kustom untuk icon stats */
+        @keyframes soft-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        .animate-soft-pulse {
+            animation: soft-pulse 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-6 md:p-12 relative overflow-x-hidden">
+
+    <div class="absolute -top-20 -left-20 w-64 h-64 bg-teal-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-20 w-96 h-96 bg-orange-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+        <div class="mb-16 transform transition-all duration-500 ease-out translate-y-0 opacity-100">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-950 tracking-tight italic">
+                Tim Pengembang <span class="text-teal-600 relative inline-block">LaporJalan
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-teal-200 rounded-full"></span>
+                </span>
+            </h1>
+            <p class="text-slate-600 mt-4 max-w-2xl text-base leading-relaxed font-normal">
+                Di balik setiap laporan masyarakat, terdapat sistem yang bekerja tanpa henti untuk mendeteksi, memetakan, dan mempercepat perbaikan infrastruktur jalan yang rusak demi keselamatan kita bersama.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-teal-100 group">
+                <img src="asset/Hadit.png" alt="Ahmad" class="w-full sm:w-32 h-44 object-cover rounded-2xl bg-slate-900 shadow-inner group-hover:scale-105 transition-transform duration-500">
+                <div class="flex flex-col justify-center">
+                    <!-- <span class="text-[11px] font-bold text-orange-600 uppercase tracking-widest bg-orange-50 px-3 py-1 rounded-full self-start">Kepemimpinan Teknik</span> -->
+                    <h2 class="text-2xl font-bold text-slate-950 mt-3 group-hover:text-teal-700 transition-colors">Haditya putra emawan</h2>
+                    <p class="text-teal-600 text-sm font-semibold mb-3">Backend Developer</p>
+                    <p class="text-slate-600 text-xs leading-relaxed font-normal opacity-90">
+                       
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-[#f4f8f7] p-8 rounded-3xl border border-transparent transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-white hover:border-gray-100 text-center flex flex-col items-center group">
+                <div class="relative mb-5">
+                    <img src="asset/geo.png" alt="Siti" class="w-28 h-28 rounded-full border-4 border-white shadow-lg bg-gray-300 group-hover:rotate-3 transition-transform">
+                    <span class="absolute bottom-0 right-0 w- h- bg-teal-500 rounded-full border-4 border-white animate-pulse"></span>
+                </div>
+                <!-- <span class="text-[11px] font-bold text-teal-800 uppercase tracking-widest bg-teal-100 px-3 py-1 rounded-full">Estetika & Fungsi</span> -->
+                <h2 class="text-2xl font-bold text-slate-950 mt-3 group-hover:text-teal-700 transition-colors">Geoseffy Meilan Prasetio</h2>
+                <p class="text-teal-600 text-sm font-semibold mb-4">UI/UX Designer</p>
+                <p class="text-slate-600 text-xs leading-relaxed font-normal opacity-90 max-w-sm">
+                    
+                </p>
+            </div>
+
+            <div class="bg-[#edf3f1] p-8 rounded-3xl border border-transparent transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-white hover:border-gray-100 text-center flex flex-col items-center group">
+                <img src="asset/rafi.jpeg" alt="Budi" class="w- h-28 rounded-2xl shadow-lg mb-5 bg-slate-800 group-hover:scale-105 transition-transform">
+                <!-- <span class="text-[11px] font-bold text-orange-600 uppercase tracking-widest bg-orange-50 px-3 py-1 rounded-full">Implementasi End-to-End</span> -->
+                <h2 class="text-2xl font-bold text-slate-950 mt-3 group-hover:text-teal-700 transition-colors">Muhammad Rafi</h2>
+                <p class="text-teal-600 text-sm font-semibold mb-4">Frontend developer</p>
+                <p class="text-slate-600 text-xs leading-relaxed font-normal opacity-90 max-w-sm">
+                   
+            </div>
+
+            <div class="bg-gradient-to-br from-[#0a5a5a] to-[#084646] p-10 rounded-3xl text-white relative overflow-hidden flex flex-col justify-center shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] bg-dot-pattern group">
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+                
+                <h3 class="text-2xl font-bold mb-5 relative z-10 tracking-tight">Filosofi Kami</h3>
+                <p class="text-base font-light italic leading-relaxed opacity-95 relative z-10 max-w-md">
+                   "Setiap lubang jalan yang terlaporkan adalah satu langkah lebih dekat menuju perjalanan yang aman. Kami hadir untuk memastikan tidak ada kerusakan yang terabaikan, karena keamanan pengguna jalan adalah prioritas teknologi kami."<span class="font-semibold text-teal-100">keamanan dan kenyamanan"</span> masyarakat di jalan raya.
+                </p>
+                <span class="absolute -bottom-6 -right-2 text-[150px] font-serif opacity-10 group-hover:opacity-20 transition-opacity group-hover:-translate-y-2 transform duration-500">“</span>
+            </div>
+        </div>
+
+        
+
+        <div class="text-center mt-20 pb-6 text-sm text-slate-400">
+            © 2026 RoadGuard Initiative. Mendorong Keamanan Jalan Raya.
+        </div>
+    </div>
+
+</body>
+</html>
